@@ -1,3 +1,6 @@
 Director:
   rules:
     'evernote-auth': 'EvernoteAuthController'
+Member:
+  extensions:
+    - EvernoteMember

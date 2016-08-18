@@ -17,10 +17,6 @@ class Evernote
     /** @var  string */
     protected $secret;
 
-    /** @var  string */
-    protected $callback;
-
-
 
     /**
      * @param string|null $token
@@ -38,13 +34,15 @@ class Evernote
             );
         }
         $this->token = $token;
-        $this->sandbox = ($EvernoteSettings->Sandbox) ?: true;
-        $this->china = ($EvernoteSettings->China) ?: false;
+        $this->sandbox = boolval(($EvernoteSettings->Sandbox) ?: true);
+        $this->china = boolval(($EvernoteSettings->China) ?: false);
         $this->key = ($EvernoteSettings->APIKey) ?: '';
         $this->secret = ($EvernoteSettings->APISecret) ?: '';
-        $this->callback = ($EvernoteSettings->CallbackURL) ?: '';
     }
 
+    /**
+     * @return null|string
+     */
     public function Authorize()
     {
         $oauth_handler = new \Evernote\Auth\OauthHandler($this->sandbox, false, $this->china);
@@ -61,16 +59,20 @@ class Evernote
         return $ret;
     }
 
-    public function getCallbackUrl()
+    /**
+     * @return string
+     */
+    private function getCallbackUrl()
     {
-        $thisUrl = (empty($_SERVER['HTTPS'])) ? "http://" : "https://";
-        $thisUrl .= $_SERVER['SERVER_NAME'];
-        $thisUrl .= ($_SERVER['SERVER_PORT'] == 80 || $_SERVER['SERVER_PORT'] == 443) ? "" : (":" . $_SERVER['SERVER_PORT']);
-        $thisUrl .= $_SERVER['SCRIPT_NAME'];
-        $thisUrl .= $this->callback;
+        $thisUrl = Director::absoluteBaseURL().'evernote-auth/callback';
+
         return $thisUrl;
     }
 
+    /**
+     * @param $token
+     * @return array
+     */
     public function notebookList($token)
     {
         $client = new \Evernote\Client($token, $this->sandbox, null, null, $this->china);

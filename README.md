@@ -26,4 +26,5 @@ Update your packages with ```composer update``` or install with ```composer inst
 In Windows, you'll need to include the GD2 DLL `php_gd2.dll` as an extension in php.ini.
 
 
-## Usage
+## How to use
+After configuration, you should just be able to visit evernote-auth/login using web-browser to initiate the Evernote Authenticate process.
