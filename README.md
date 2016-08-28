@@ -1,3 +1,6 @@
+## SilverStripe Evernote Wrapper
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ishannz/silverstripe-evernote/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ishannz/silverstripe-evernote/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/ishannz/silverstripe-evernote/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ishannz/silverstripe-evernote/build-status/master)
 ## Installation
 
 The Evernote cloud Service Provider can be installed via [Composer](http://getcomposer.org) by requiring the
